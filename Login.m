@@ -19,6 +19,10 @@
     [super viewDidAppear:animated];
     NSUserDefaults *data = [NSUserDefaults standardUserDefaults];
     if([data objectForKey:@"userData"] != nil) [self getDataForFirstLogin:NO];
+    if([data objectForKey:@"time"] == nil) {
+        [data setValue:[NSNumber numberWithInteger:0] forKey:@"time"];
+        [data synchronize];
+    }
 }
 - (void)viewDidLoad {
     _userData = [[UserData alloc]init];

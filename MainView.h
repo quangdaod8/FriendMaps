@@ -18,9 +18,9 @@
 
 
 @interface MainView : UIViewController<UITableViewDataSource,UITableViewDelegate>;
-@property(strong, nonatomic) NSMutableArray *userArray;
 @property(nonatomic, strong) UserData *userData;
 @property(nonatomic,strong) DataServices *service;
+@property(nonatomic,strong) NSTimer *timer;
 @property(nonatomic,strong) NSString *email;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property(nonatomic, strong) UIRefreshControl *topRefreshControl;

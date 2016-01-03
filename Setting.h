@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface Setting : UIViewController
+@property (weak, nonatomic) IBOutlet UISegmentedControl *btnSeg;
 
 @end

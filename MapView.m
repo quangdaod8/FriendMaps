@@ -30,6 +30,10 @@
             if(userData.userPoint.coordinate.longitude != 0 && userData.userPoint.coordinate.latitude != 0) {
             _img = userData.userImageAvatar;
             
+            _userLocation = [[CLLocation alloc]init];
+            _userLocation = userData.userPoint;
+            _toName = userData.userName;
+                
             MKPointAnnotation*    annotation = [[MKPointAnnotation alloc] init];
             CLLocationCoordinate2D myCoordinate;
             myCoordinate.latitude=userData.userPoint.coordinate.latitude;
@@ -117,6 +121,11 @@
     }];
     UIAlertAction *direct = [UIAlertAction actionWithTitle:@"Chỉ đường đến đây" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         //Direction
+        MKPlacemark *placemark = [[MKPlacemark alloc] initWithCoordinate:_userLocation.coordinate addressDictionary:nil];
+        MKMapItem *mapItem = [[MKMapItem alloc] initWithPlacemark:placemark];
+        [mapItem setName:_toName];
+        NSDictionary *options = @{MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving};
+        [mapItem openInMapsWithLaunchOptions:options];
     }];
     [opt addAction:push];
     [opt addAction:direct];

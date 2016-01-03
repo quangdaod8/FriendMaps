@@ -55,11 +55,20 @@
                                     <action selector="btnLogin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="S3Y-U5-M2v"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="map-icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="DqD-ES-pho">
+                                <rect key="frame" x="110" y="22" width="100" height="100"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="Dv9-vG-VYr"/>
+                                    <constraint firstAttribute="width" constant="100" id="ecV-4f-W8Y"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="VQC-Qg-5Pk" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="110" id="2Mp-DC-a0s"/>
+                            <constraint firstItem="DqD-ES-pho" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="BJJ-UQ-70w"/>
                             <constraint firstItem="1NG-3w-qg0" firstAttribute="top" secondItem="VQC-Qg-5Pk" secondAttribute="bottom" constant="8" id="Gc2-tO-DLI"/>
                             <constraint firstAttribute="trailingMargin" secondItem="1NG-3w-qg0" secondAttribute="trailing" constant="27" id="LRD-NQ-m7f"/>
                             <constraint firstAttribute="trailingMargin" secondItem="VQC-Qg-5Pk" secondAttribute="trailing" constant="27" id="NDt-Xo-S4H"/>
@@ -67,6 +76,7 @@
                             <constraint firstItem="1NG-3w-qg0" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="27" id="RJm-kD-ont"/>
                             <constraint firstItem="VQC-Qg-5Pk" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="S8w-Em-TzO"/>
                             <constraint firstItem="a3v-6M-UGB" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="W19-H5-FBm"/>
+                            <constraint firstItem="DqD-ES-pho" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="2" id="cGo-2W-lbe"/>
                             <constraint firstItem="VQC-Qg-5Pk" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="27" id="dcg-sR-ZAY"/>
                             <constraint firstItem="dMa-7u-G1b" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="fqH-Us-iPb"/>
                             <constraint firstItem="a3v-6M-UGB" firstAttribute="top" secondItem="1NG-3w-qg0" secondAttribute="bottom" constant="8" id="m9e-dn-fZ2"/>
@@ -234,10 +244,89 @@
                     <view key="view" contentMode="scaleToFill" id="0XS-oy-O12">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="GL2-iK-nsQ">
+                                <rect key="frame" x="16" y="101" width="288" height="29"/>
+                                <animations/>
+                                <segments>
+                                    <segment title="30s"/>
+                                    <segment title="1 Phút"/>
+                                    <segment title="3 Phút"/>
+                                    <segment title="Thủ Công"/>
+                                </segments>
+                                <color key="tintColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tần suất cập nhật dữ liệu" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cvl-BX-skt">
+                                <rect key="frame" x="16" y="72" width="288" height="21"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="Xvg-5u-cbm"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="YsR-nA-7Pw">
+                                <rect key="frame" x="16" y="137" width="288" height="112"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="112" id="qdW-KN-fQh"/>
+                                </constraints>
+                                <string key="text">Ứng dụng sẽ tự động cập nhật thông tin vị trí của bạn và bạn bè sau 1 khoảng thời gian mặc định là 30s.
+Chọn “Thủ Công” để cập nhật thủ công bằng cách kéo danh sách bạn bè xuống rồi thả ra.
+</string>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <imageView userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="map-icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="SNO-95-qwL">
+                                <rect key="frame" x="110" y="257" width="100" height="100"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="CzM-Wt-yOt"/>
+                                    <constraint firstAttribute="width" constant="100" id="I5F-65-vyd"/>
+                                </constraints>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="lDi-5N-Wie">
+                                <rect key="frame" x="16" y="375" width="288" height="99"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="288" id="dlb-UK-xak"/>
+                                    <constraint firstAttribute="height" constant="99" id="yez-ue-byz"/>
+                                </constraints>
+                                <string key="text">Phát triển bởi: Đào Duy Quang
+Viện Toán Ứng Dụng &amp; Tin Học
+Trường Đại Học Bách Khoa Hà Nội
+Email: daoduyquang91@gmail.com</string>
+                                <color key="textColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="leadingMargin" secondItem="YsR-nA-7Pw" secondAttribute="leading" id="0j8-5c-y4G"/>
+                            <constraint firstItem="Cvl-BX-skt" firstAttribute="top" secondItem="Aag-jA-fRU" secondAttribute="bottom" constant="8" id="DPE-K1-TRL"/>
+                            <constraint firstItem="SNO-95-qwL" firstAttribute="centerX" secondItem="0XS-oy-O12" secondAttribute="centerX" id="E2M-zu-Vem"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="YsR-nA-7Pw" secondAttribute="trailing" id="Ebq-wQ-AaF"/>
+                            <constraint firstItem="lDi-5N-Wie" firstAttribute="centerX" secondItem="0XS-oy-O12" secondAttribute="centerX" id="Jvb-su-lnS"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="Cvl-BX-skt" secondAttribute="leading" id="S53-cW-i71"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="GL2-iK-nsQ" secondAttribute="leading" id="bde-Ut-iaJ"/>
+                            <constraint firstItem="Cvl-BX-skt" firstAttribute="centerX" secondItem="0XS-oy-O12" secondAttribute="centerX" id="dJZ-bN-3v9"/>
+                            <constraint firstItem="YsR-nA-7Pw" firstAttribute="top" secondItem="GL2-iK-nsQ" secondAttribute="bottom" constant="8" id="f5M-FG-ked"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="GL2-iK-nsQ" secondAttribute="trailing" id="iJR-P1-LyP"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Cvl-BX-skt" secondAttribute="trailing" id="jFT-NY-kXQ"/>
+                            <constraint firstItem="lDi-5N-Wie" firstAttribute="top" secondItem="SNO-95-qwL" secondAttribute="bottom" constant="18" id="jcJ-PY-SM7"/>
+                            <constraint firstItem="SNO-95-qwL" firstAttribute="top" secondItem="YsR-nA-7Pw" secondAttribute="bottom" constant="8" id="miF-C8-Mzj"/>
+                            <constraint firstItem="Cvl-BX-skt" firstAttribute="centerX" secondItem="0XS-oy-O12" secondAttribute="centerX" id="n75-3d-OjE"/>
+                            <constraint firstItem="GL2-iK-nsQ" firstAttribute="top" secondItem="Cvl-BX-skt" secondAttribute="bottom" constant="8" id="oau-iY-QTr"/>
+                        </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="btnSeg" destination="GL2-iK-nsQ" id="zGl-7F-6ks"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WXv-WK-qpF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -306,6 +395,7 @@
     </scenes>
     <resources>
         <image name="imgava.jpg" width="410" height="410"/>
+        <image name="map-icon.png" width="456" height="456"/>
         <image name="search.png" width="256" height="256"/>
     </resources>
 </document>

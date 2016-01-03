@@ -15,6 +15,7 @@
 @property(strong, nonatomic) DataServices *service;
 @property(strong, nonatomic) NSString* email;
 @property(strong, nonatomic) NSString* myName;
+@property(strong,nonatomic) NSString* toName;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (strong, nonatomic) UIImage *img;
 @property(strong, nonatomic) CLLocation *userLocation;

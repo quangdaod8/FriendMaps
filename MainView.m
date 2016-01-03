@@ -16,6 +16,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _timer = [[NSTimer alloc]init];
+    [self updateTimer];
+    
+    NSUserDefaults *data = [NSUserDefaults standardUserDefaults];
+    _email = [data objectForKey:@"userData"];
+    
     UIBarButtonItem *menuButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"menu.png"] style:UIBarButtonItemStylePlain target:self action:@selector(menuAction)];
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addContact)];
     self.navigationItem.leftBarButtonItem = menuButton;
@@ -28,9 +34,6 @@
     
     _service = [[DataServices alloc]init];
     _userData = [[UserData alloc]init];
-    
-    NSUserDefaults *data = [NSUserDefaults standardUserDefaults];
-    _email = [data objectForKey:@"userData"];
     
     [self loadDataOnTheFirstTime:YES];
     // Do any additional setup after loading the view.
@@ -318,6 +321,42 @@
         map.email = _userData.userFriends[index.row];
         map.myName = _userData.userName;
     }
+}
+
+-(void)updateTimer {
+    NSUserDefaults *data = [NSUserDefaults standardUserDefaults];
+    switch ([[data valueForKey:@"time"] integerValue]) {
+        case 0: { _timer = [NSTimer scheduledTimerWithTimeInterval:30 target:self selector:@selector(reFreshDataWithTimer) userInfo:nil repeats:YES];
+            break;
+        }
+            
+        case 1: { _timer = [NSTimer scheduledTimerWithTimeInterval:60 target:self selector:@selector(reFreshDataWithTimer) userInfo:nil repeats:YES];
+            break;
+        }
+            
+        case 2: { _timer = [NSTimer scheduledTimerWithTimeInterval:180 target:self selector:@selector(reFreshDataWithTimer) userInfo:nil repeats:YES];
+            break;
+        }
+            
+        case 3: { [_timer invalidate];
+            _timer = nil;
+            break;
+        }
+    }
+    
+}
+-(void)reFreshDataWithTimer
+{
+    [_service updateLocationForEmail:_email completed:^(NSError *error) {
+        if(!error) {
+            [self updateTimer];
+            NSLog(@"cap nhat vi tri");
+            [_tableView reloadData];
+        } else {
+            [_timer invalidate];
+            _timer = nil;
+        }
+    }];
 }
 
 /*
