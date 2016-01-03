@@ -11,79 +11,79 @@
 @implementation DataServices
 -(void)getUserDataWithEmail:(NSString *)email completed:(blockComplete)completed
 {
-    _userData = [[UserData alloc]init];
+    UserData *userData = [[UserData alloc]init];
     PFQuery *query                   = [PFQuery queryWithClassName:@"data"];
     [query whereKey:@"email" equalTo:email];
     [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
         if(!error)
         {
-            _userData.userName = object[@"name"];
-            _userData.userPassword = object[@"pass"];
-            _userData.userEmail = object[@"email"];
-            _userData.userLocation = object[@"place"];
-            _userData.userFriends = [NSMutableArray arrayWithArray:object[@"friends"]];
-            _userData.userUpdateAt = object.updatedAt;
+            userData.userName = object[@"name"];
+            userData.userPassword = object[@"pass"];
+            userData.userEmail = object[@"email"];
+            userData.userLocation = object[@"place"];
+            userData.userFriends = [NSMutableArray arrayWithArray:object[@"friends"]];
+            userData.userUpdateAt = object.updatedAt;
             
             PFGeoPoint *point = [[PFGeoPoint alloc]init];
             point = object[@"point"];
             CLLocation *location = [[CLLocation alloc]initWithLatitude:point.latitude longitude:point.longitude];
-            _userData.userPoint = location;
+            userData.userPoint = location;
             
             PFFile *file                     = [object objectForKey:@"imgava"];
             [file getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
                 if(!error)
                 {
-                    _userData.userImageAvatar         = [UIImage imageWithData:data];
-                    completed(_userData,nil);
-                } else completed(_userData,error);
+                    userData.userImageAvatar         = [UIImage imageWithData:data];
+                    completed(userData,nil);
+                } else completed(userData,error);
             }];
-
-            
         } else completed(nil,error);
     }];    
 }
+
 -(void)updateLocationForEmail:(NSString *)email completed:(blockDone)completed
 {
     [PFGeoPoint geoPointForCurrentLocationInBackground:^(PFGeoPoint *geoPoint, NSError *error) {
         if(!error)
         {
-        PFQuery *query                   = [PFQuery queryWithClassName:@"data"];
-        [query whereKey:@"email" equalTo:email];
-        [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+            PFQuery *query                   = [PFQuery queryWithClassName:@"data"];
+            [query whereKey:@"email" equalTo:email];
+            [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
             if(!error)
             {
-                _location = @"";
                 CLGeocoder *geocoder = [[CLGeocoder alloc]init];
                 CLLocation *myLocation = [[CLLocation alloc]initWithLatitude:geoPoint.latitude longitude:geoPoint.longitude];
                 [geocoder reverseGeocodeLocation:myLocation completionHandler:^(NSArray *placemarks, NSError *error) {
-                    if (error == nil && [placemarks count] > 0) {
-                        _placemark                        = [placemarks lastObject];
-
-                        if(_placemark.thoroughfare != nil)
-                            _location =  [_location stringByAppendingString:[NSString stringWithFormat:@"%@, ",_placemark.thoroughfare]];
-                        if(_placemark.subLocality != nil)
-                            _location = [_location stringByAppendingString:[NSString stringWithFormat:@"%@, ",_placemark.subLocality]];
-                        if(_placemark.locality != nil)
-                            _location = [_location stringByAppendingString:[NSString stringWithFormat:@"%@, ",_placemark.locality]];
-                        if(_placemark.subAdministrativeArea != nil)
-                            _location = [_location stringByAppendingString:[NSString stringWithFormat:@"%@, ",_placemark.subAdministrativeArea]];
-                        if(_placemark.administrativeArea != nil)
-                            _location = [_location stringByAppendingString:[NSString stringWithFormat:@"%@. ",_placemark.administrativeArea]];
-                        object[@"place"] = _location;
-                        NSLog(@"Location: %@",_location);
+                    if (!error && [placemarks count] > 0) {
+                        CLPlacemark *placemark = [[CLPlacemark alloc]initWithPlacemark:[placemarks lastObject]];
+                        NSString *location = @"";
+                        if(placemark.thoroughfare != nil)
+                            location =  [location stringByAppendingString:[NSString stringWithFormat:@"%@, ",placemark.thoroughfare]];
+                        if(placemark.subLocality != nil)
+                            location = [location stringByAppendingString:[NSString stringWithFormat:@"%@, ",placemark.subLocality]];
+                        if(placemark.locality != nil)
+                            location = [location stringByAppendingString:[NSString stringWithFormat:@"%@, ",placemark.locality]];
+                        if(placemark.subAdministrativeArea != nil)
+                            location = [location stringByAppendingString:[NSString stringWithFormat:@"%@, ",placemark.subAdministrativeArea]];
+                        if(placemark.administrativeArea != nil)
+                            location = [location stringByAppendingString:[NSString stringWithFormat:@"%@. ",placemark.administrativeArea]];
+                        object[@"place"] = location;
                         object[@"point"] = geoPoint;
                         [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                            if(succeeded) completed(true,nil);
+                            if(!error) {
+                                NSLog(@"Location: %@",location);
+                                completed(nil);
+                            }else completed(error);
                         }];
-
-                    }else completed(true,error);}];
+                    }else completed(error);}];
             }
-            else completed(true,error);
+            else completed(error);
         }];
         }
-        else completed(true,error);
+        else completed(error);
     }];
 }
+
 -(void)signUpForEmail:(NSString *)email Name:(NSString *)name Password:(NSString *)password ImageAva:(UIImage *)image Completed:(blockEmailExist)completed
 {
     PFQuery *query                   = [PFQuery queryWithClassName:@"data"];
@@ -116,22 +116,27 @@
         else completed(NO,error);
     }];
 }
--(void)addFriendFromMyEmail:(NSString *)myEmail toEmail:(NSString *)email Completed:(blockFriendExist)completed
+-(void)addFriendFromMyEmail:(NSString *)myEmail toEmail:(NSString *)email Completed:(blockAddFriendOk)completed
 {
     PFQuery *query                   = [PFQuery queryWithClassName:@"data"];
     [query whereKey:@"email" equalTo:myEmail];
     [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
         if(!error)
         {
-            NSMutableArray *friends = [NSMutableArray arrayWithArray:object[@"friends"]];
-            if(friends.count > 0)
-            {
+        NSMutableArray *friends = [NSMutableArray arrayWithArray:object[@"friends"]];
+        if(friends.count > 0) {
+        BOOL isFriend = NO;
+            
             for(int i = 0; i < friends.count; i++)
             {
                 if([friends[i] isEqualToString:email]) {
-                    completed(YES,nil);
+                    isFriend = YES;
+                    NSError *loi = [NSError errorWithDomain:@"Domain" code:123 userInfo:nil];
+                    completed(loi);
                     break;
-                } else if( i == friends.count - 1) {
+                }
+            }
+                if(!isFriend) {
                     [friends addObject:email];
                     object[@"friends"] = friends;
                     [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
@@ -143,16 +148,15 @@
                                     [toFriend addObject:myEmail];
                                     object[@"friends"] = toFriend;
                                     [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                                        if(succeeded && !error) completed(NO,nil);
-                                        else completed(NO,error);
+                                        if(succeeded && !error) completed(nil);
+                                        else completed(error);
                                     }];
-                                } else completed(NO,error);
+                                } else completed(error);
                             }];
                         }
-                        else completed(NO,error);
+                        else completed(error);
                     }];
                 }
-            }
             } else {
                 [friends addObject:email];
                 object[@"friends"] = friends;
@@ -165,16 +169,16 @@
                                 [toFriend addObject:myEmail];
                                 object[@"friends"] = toFriend;
                                 [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-                                    if(succeeded && !error) completed(NO,nil);
-                                    else completed(NO,error);
+                                    if(succeeded && !error) completed(nil);
+                                    else completed(error);
                                 }];
-                            } else completed(NO,error);
+                            } else completed(error);
                         }];
                     }
-                    else completed(NO,error);
+                    else completed(error);
                 }];
             }
-        } else completed(NO,error);
+        } else completed(error);
     }];
 }
 
@@ -188,25 +192,5 @@
     NSDictionary *data2 = @{ @"alert" : alert };
     if(isBadge) [push setData:data1]; else [push setData:data2];
     [push sendPushInBackground];
-}
--(void)getListFriendsWithEmail:(NSString *)email completed:(blockGetList)completed
-{
-    [self getUserDataWithEmail:email completed:^(UserData *userData, NSError *error) {
-        if(!error) {
-            NSMutableArray *array = [[NSMutableArray alloc]init];
-            int n = userData.userFriends.count;
-            __block int i = 0;
-            while(i < n)
-            {
-                [self getUserDataWithEmail:userData.userFriends[i] completed:^(UserData *userData, NSError *error) {
-                    if(!error) {
-                        [array addObject:userData];
-                        i++;
-                        if(i == n) completed(array,nil);
-                    } else completed(nil,error);
-                }];
-            }
-        } else completed(nil,error);
-    }];
 }
 @end

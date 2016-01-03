@@ -121,6 +121,7 @@
                         <outlet property="tableView" destination="Rm7-YL-cbd" id="2Ys-J2-cdt"/>
                         <segue destination="EMx-EJ-jhf" kind="show" identifier="addFriend" id="qrv-42-5hb"/>
                         <segue destination="dif-9l-Qbq" kind="show" identifier="showMap" id="N6q-bg-vaC"/>
+                        <segue destination="NmF-3t-mg6" kind="show" identifier="setting" id="Sc2-8p-iC7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lSr-cg-Ius" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -222,6 +223,26 @@
             </objects>
             <point key="canvasLocation" x="1664" y="81"/>
         </scene>
+        <!--Cài Đặt-->
+        <scene sceneID="AEm-H6-d5t">
+            <objects>
+                <viewController title="Cài Đặt" id="NmF-3t-mg6" customClass="Setting" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Aag-jA-fRU"/>
+                        <viewControllerLayoutGuide type="bottom" id="xYd-je-v3W"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="0XS-oy-O12">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WXv-WK-qpF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2099" y="81"/>
+        </scene>
         <!--Đang tải...-->
         <scene sceneID="ouz-ua-Mze">
             <objects>
@@ -284,7 +305,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="imgava.jpg" width="500" height="410"/>
+        <image name="imgava.jpg" width="410" height="410"/>
         <image name="search.png" width="256" height="256"/>
     </resources>
 </document>

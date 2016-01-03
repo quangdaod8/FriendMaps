@@ -45,9 +45,7 @@
 -(CustomTableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CustomTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    
     [cell setDataByEmail:_userData.userFriends[indexPath.row] MyLocation:_userData.userPoint];
-
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -86,7 +84,7 @@
 {
     if(isFirstLoad)
     {
-        [_service updateLocationForEmail:_email completed:^(BOOL done, NSError *error) {
+        [_service updateLocationForEmail:_email completed:^(NSError *error) {
         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
             if (!error) {
                 [_service getUserDataWithEmail:_email completed:^(UserData *userData, NSError *error) {
@@ -189,7 +187,7 @@
             }
     else
     {
-        [_service updateLocationForEmail:_email completed:^(BOOL done, NSError *error) {
+        [_service updateLocationForEmail:_email completed:^(NSError *error) {
             if (!error) {
                 [_service getUserDataWithEmail:_email completed:^(UserData *userData, NSError *error) {
                     if(!error)
@@ -287,8 +285,7 @@
         [menu dismissViewControllerAnimated:YES completion:nil];
     }];
     UIAlertAction *setup = [UIAlertAction actionWithTitle:@"Cài Đặt" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        //setup
-        [_service pushNotificationToEmail:@"quang" withAlert:@"Thong bao" withIsBadge:YES];
+        [self performSegueWithIdentifier:@"setting" sender:self];
          }];
     UIAlertAction *logout = [UIAlertAction actionWithTitle:@"Đăng Xuất" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
         NSUserDefaults *email = [NSUserDefaults standardUserDefaults];

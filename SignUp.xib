@@ -110,6 +110,6 @@
         </view>
     </objects>
     <resources>
-        <image name="imgava.jpg" width="500" height="410"/>
+        <image name="imgava.jpg" width="410" height="410"/>
     </resources>
 </document>

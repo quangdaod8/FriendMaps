@@ -11,7 +11,7 @@
 @implementation CustomTableViewCell
 
 - (void)awakeFromNib {
-        _service = [[DataServices alloc]init];
+    _service = [[DataServices alloc]init];
     _imgAvaCell.layer.cornerRadius = 70/2;
     _imgAvaCell.clipsToBounds = YES;
     _imgAvaCell.layer.borderWidth = 0.5;

@@ -52,6 +52,7 @@
             _btnAdd.highlighted = NO;
             _imgAva.image = userData.userImageAvatar;
             _lblName.text = userData.userName;
+            _toEmail = _txtEmail.text;
             } else [self AlertWithTitle:@"Email của bạn" Messenger:@"Vui lòng nhập email khác" Butontitle:@"Ok"];
         }
         else
@@ -79,18 +80,13 @@
     }];
 }
 - (IBAction)btnAdd:(id)sender {
-__unsafe_unretained typeof(self) weakSelf = self;
+    __unsafe_unretained typeof(self) weakSelf = self;
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [_service addFriendFromMyEmail:_myEmail toEmail:_txtEmail.text Completed:^(BOOL isFriendAlready, NSError *error) {
+    [_service addFriendFromMyEmail:_myEmail toEmail:_txtEmail.text Completed:^(NSError *error) {
         [MBProgressHUD hideAllHUDsForView:weakSelf.view animated:YES];
-        if(isFriendAlready && !error)
+        if(!error)
         {
-            [weakSelf AlertWithTitle:@"Đã là bạn" Messenger:@"Email này đã nằm trong danh sách bạn bè của bạn" Butontitle:@"Ok"];
-            weakSelf.btnAdd.userInteractionEnabled = NO;
-            weakSelf.btnAdd.highlighted = YES;
-        }
-        else if(!isFriendAlready && !error) {
-            NSString *m = [NSString stringWithFormat:@"Bạn và %@ đã trở thành bạn bè. Kéo danh sách bạn bè để cập nhật.",weakSelf.lblName.text];
+            NSString *m = [NSString stringWithFormat:@"%@ và bạn đã trở thành bạn bè. Kéo danh sách bạn bè xuống để cập nhật.",weakSelf.lblName.text];
             [weakSelf AlertWithTitle:@"Thành công" Messenger:m Butontitle:@"Ok"];
             weakSelf.btnAdd.userInteractionEnabled = NO;
             weakSelf.btnAdd.highlighted = YES;
@@ -98,6 +94,11 @@ __unsafe_unretained typeof(self) weakSelf = self;
             [weakSelf.service pushNotificationToEmail:weakSelf.txtEmail.text withAlert:s withIsBadge:YES];
         } else {
             switch (error.code) {
+                    case 123:
+                    [weakSelf AlertWithTitle:@"Đã là bạn" Messenger:@"Email này đã nằm trong danh sách bạn bè của bạn" Butontitle:@"Ok"];
+                    weakSelf.btnAdd.userInteractionEnabled = NO;
+                    weakSelf.btnAdd.highlighted = YES;
+                    break;
                 case 100:
                     [weakSelf AlertWithTitle:@"Lỗi mạng" Messenger:@"Kiểm tra lại kết nối internet" Butontitle:@"Ok"];
                     break;
@@ -106,8 +107,7 @@ __unsafe_unretained typeof(self) weakSelf = self;
                     break;
             }
         }
-    }];
-}
+    }];}
 
 -(void)AlertWithTitle:(NSString*)title  Messenger:(NSString*)messenger  Butontitle:(NSString*)buttonTitle
 {

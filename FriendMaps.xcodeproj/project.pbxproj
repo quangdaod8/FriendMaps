@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		D60755E91C37E73400230F55 /* imgava.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D60755E81C37E73400230F55 /* imgava.jpg */; settings = {ASSET_TAGS = (); }; };
 		D60755ED1C37EAC600230F55 /* map-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D60755EC1C37EAC600230F55 /* map-icon.png */; settings = {ASSET_TAGS = (); }; };
+		D62331B11C39AAF600A8EA5C /* Setting.m in Sources */ = {isa = PBXBuildFile; fileRef = D62331B01C39AAF600A8EA5C /* Setting.m */; settings = {ASSET_TAGS = (); }; };
 		D6299CB11C36CD72009007ED /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = D6299CB01C36CD72009007ED /* menu.png */; settings = {ASSET_TAGS = (); }; };
 		D6299CB51C36D2F3009007ED /* SignUp.m in Sources */ = {isa = PBXBuildFile; fileRef = D6299CB31C36D2F3009007ED /* SignUp.m */; settings = {ASSET_TAGS = (); }; };
 		D6299CB61C36D2F3009007ED /* SignUp.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6299CB41C36D2F3009007ED /* SignUp.xib */; settings = {ASSET_TAGS = (); }; };
@@ -45,6 +46,8 @@
 /* Begin PBXFileReference section */
 		D60755E81C37E73400230F55 /* imgava.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = imgava.jpg; sourceTree = "<group>"; };
 		D60755EC1C37EAC600230F55 /* map-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map-icon.png"; sourceTree = "<group>"; };
+		D62331AF1C39AAF600A8EA5C /* Setting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Setting.h; sourceTree = "<group>"; };
+		D62331B01C39AAF600A8EA5C /* Setting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Setting.m; sourceTree = "<group>"; };
 		D6299CB01C36CD72009007ED /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu.png; sourceTree = "<group>"; };
 		D6299CB21C36D2F3009007ED /* SignUp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUp.h; sourceTree = "<group>"; };
 		D6299CB31C36D2F3009007ED /* SignUp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUp.m; sourceTree = "<group>"; };
@@ -114,6 +117,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D62331AE1C39AAE400A8EA5C /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				D62331AF1C39AAF600A8EA5C /* Setting.h */,
+				D62331B01C39AAF600A8EA5C /* Setting.m */,
+			);
+			name = Setting;
+			sourceTree = "<group>";
+		};
 		D6299CB71C36D2F9009007ED /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
@@ -194,6 +206,7 @@
 		D6B10C9D1C3414CA003D8E64 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				D62331AE1C39AAE400A8EA5C /* Setting */,
 				D6299CBE1C372A4A009007ED /* MapView */,
 				D6299CB81C36EE8C009007ED /* AddFriend */,
 				D6299CB71C36D2F9009007ED /* SignUp */,
@@ -377,6 +390,7 @@
 			files = (
 				D6B10CA11C341529003D8E64 /* Login.m in Sources */,
 				D6B10CA51C3426D7003D8E64 /* MBProgressHUD.m in Sources */,
+				D62331B11C39AAF600A8EA5C /* Setting.m in Sources */,
 				D6299CC11C372A63009007ED /* MapView.m in Sources */,
 				D6B10CA91C344B06003D8E64 /* MainView.m in Sources */,
 				D6299CBB1C36EEA2009007ED /* AddFriend.m in Sources */,

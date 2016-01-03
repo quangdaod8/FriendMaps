@@ -16,6 +16,6 @@
 @property(strong, nonatomic) NSString* email;
 @property(strong, nonatomic) NSString* myName;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
-@property (weak, nonatomic) UIImage *img;
+@property (strong, nonatomic) UIImage *img;
 @property(strong, nonatomic) CLLocation *userLocation;
 @end
