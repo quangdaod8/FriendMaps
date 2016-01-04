@@ -18,7 +18,7 @@
     [super viewDidLoad];
     _timer = [[NSTimer alloc]init];
     [self updateTimer];
-    
+
     NSUserDefaults *data = [NSUserDefaults standardUserDefaults];
     _email = [data objectForKey:@"userData"];
     
@@ -100,6 +100,12 @@
                             }
                         
                         _userData = userData;
+                        
+                        HeaderView *header = [[[NSBundle mainBundle]loadNibNamed:@"HeaderView" owner:self options:nil]firstObject];
+                        header.frame = CGRectMake(0, 0, self.view.bounds.size.width, 100);
+                        [header setDataByUserData:_userData];
+                        
+                        _tableView.tableHeaderView = header;
                         if(_userData.userFriends.count == 0) [self AlertWithTitle:@"Thêm bạn bè" Messenger:@"Danh sách bạn bè hiện tại đang trống.\nẤn + để thêm bạn bè bằng Email.\nKéo danh sách bạn bè xuống để cập nhật thông tin." Butontitle:@"Ok"];
                         self.navigationItem.title = _userData.userName;
                         [_tableView reloadData];

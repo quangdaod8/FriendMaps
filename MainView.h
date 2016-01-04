@@ -15,6 +15,7 @@
 #import "SignUp.h"
 #import "AddFriend.h"
 #import "MapView.h"
+#import "HeaderView.h"
 
 
 @interface MainView : UIViewController<UITableViewDataSource,UITableViewDelegate>;

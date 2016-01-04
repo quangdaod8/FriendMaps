@@ -22,6 +22,8 @@
 		D6B10CA11C341529003D8E64 /* Login.m in Sources */ = {isa = PBXBuildFile; fileRef = D6B10CA01C341529003D8E64 /* Login.m */; settings = {ASSET_TAGS = (); }; };
 		D6B10CA51C3426D7003D8E64 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = D6B10CA41C3426D7003D8E64 /* MBProgressHUD.m */; settings = {ASSET_TAGS = (); }; };
 		D6B10CA91C344B06003D8E64 /* MainView.m in Sources */ = {isa = PBXBuildFile; fileRef = D6B10CA81C344B06003D8E64 /* MainView.m */; settings = {ASSET_TAGS = (); }; };
+		D6EED1E71C3AB5F100813889 /* HeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = D6EED1E61C3AB5F100813889 /* HeaderView.m */; settings = {ASSET_TAGS = (); }; };
+		D6EED1E91C3AB60000813889 /* HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6EED1E81C3AB60000813889 /* HeaderView.xib */; settings = {ASSET_TAGS = (); }; };
 		D6FDE4F01C33C00400395FC3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D6FDE4EF1C33C00400395FC3 /* main.m */; };
 		D6FDE4F31C33C00400395FC3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D6FDE4F21C33C00400395FC3 /* AppDelegate.m */; };
 		D6FDE4F91C33C00400395FC3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6FDE4F71C33C00400395FC3 /* Main.storyboard */; };
@@ -67,6 +69,9 @@
 		D6B10CA41C3426D7003D8E64 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		D6B10CA71C344B06003D8E64 /* MainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainView.h; sourceTree = "<group>"; };
 		D6B10CA81C344B06003D8E64 /* MainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainView.m; sourceTree = "<group>"; };
+		D6EED1E51C3AB5F100813889 /* HeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeaderView.h; sourceTree = "<group>"; };
+		D6EED1E61C3AB5F100813889 /* HeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeaderView.m; sourceTree = "<group>"; };
+		D6EED1E81C3AB60000813889 /* HeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeaderView.xib; sourceTree = "<group>"; };
 		D6FDE4EB1C33C00300395FC3 /* FriendMaps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FriendMaps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6FDE4EF1C33C00400395FC3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D6FDE4F11C33C00400395FC3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -173,6 +178,7 @@
 				D6299CB01C36CD72009007ED /* menu.png */,
 			);
 			name = Assets;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		D6B10C9B1C34140D003D8E64 /* Libs */ = {
@@ -181,6 +187,7 @@
 				D6B10CA21C3426D7003D8E64 /* MBProgressHUD */,
 			);
 			name = Libs;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		D6B10C9C1C34141B003D8E64 /* Frameworks */ = {
@@ -239,17 +246,34 @@
 			children = (
 				D6B10CA71C344B06003D8E64 /* MainView.h */,
 				D6B10CA81C344B06003D8E64 /* MainView.m */,
-				D69F745D1C3514D200F8E3A2 /* CustomCell */,
 			);
 			name = MainView;
+			sourceTree = "<group>";
+		};
+		D6EED1E31C3AB5A300813889 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D6EED1E41C3AB5D900813889 /* HeaderView */,
+				D69F745D1C3514D200F8E3A2 /* CustomCell */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		D6EED1E41C3AB5D900813889 /* HeaderView */ = {
+			isa = PBXGroup;
+			children = (
+				D6EED1E51C3AB5F100813889 /* HeaderView.h */,
+				D6EED1E61C3AB5F100813889 /* HeaderView.m */,
+				D6EED1E81C3AB60000813889 /* HeaderView.xib */,
+			);
+			name = HeaderView;
 			sourceTree = "<group>";
 		};
 		D6FDE4E21C33C00300395FC3 = {
 			isa = PBXGroup;
 			children = (
-				D69F74631C351A0500F8E3A2 /* Assets */,
 				D6FDE51E1C33CB7C00395FC3 /* Service */,
-				D6B10C9B1C34140D003D8E64 /* Libs */,
+				D6EED1E31C3AB5A300813889 /* Views */,
 				D6FDE51D1C33CB6E00395FC3 /* Model */,
 				D6B10C9D1C3414CA003D8E64 /* Controller */,
 				D6FDE4ED1C33C00400395FC3 /* FriendMaps */,
@@ -268,6 +292,8 @@
 		D6FDE4ED1C33C00400395FC3 /* FriendMaps */ = {
 			isa = PBXGroup;
 			children = (
+				D6B10C9B1C34140D003D8E64 /* Libs */,
+				D69F74631C351A0500F8E3A2 /* Assets */,
 				D6FDE4F11C33C00400395FC3 /* AppDelegate.h */,
 				D6FDE4F21C33C00400395FC3 /* AppDelegate.m */,
 				D6FDE4F71C33C00400395FC3 /* Main.storyboard */,
@@ -370,6 +396,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6299CBD1C36F320009007ED /* search.png in Resources */,
+				D6EED1E91C3AB60000813889 /* HeaderView.xib in Resources */,
 				D60755ED1C37EAC600230F55 /* map-icon.png in Resources */,
 				D6299CB61C36D2F3009007ED /* SignUp.xib in Resources */,
 				D6FDE4FE1C33C00400395FC3 /* LaunchScreen.storyboard in Resources */,
@@ -388,6 +415,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6EED1E71C3AB5F100813889 /* HeaderView.m in Sources */,
 				D6B10CA11C341529003D8E64 /* Login.m in Sources */,
 				D6B10CA51C3426D7003D8E64 /* MBProgressHUD.m in Sources */,
 				D62331B11C39AAF600A8EA5C /* Setting.m in Sources */,

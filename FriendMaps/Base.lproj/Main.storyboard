@@ -107,7 +107,6 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="Rm7-YL-cbd">
                                 <rect key="frame" x="-4" y="0.0" width="328" height="568"/>
                                 <animations/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="i1o-l5-UVp" id="3dQ-KD-m9N"/>
                                     <outlet property="delegate" destination="i1o-l5-UVp" id="sIg-8H-bSZ"/>
@@ -115,7 +114,6 @@
                             </tableView>
                         </subviews>
                         <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="Rm7-YL-cbd" secondAttribute="trailing" constant="-20" id="3ce-K5-xUg"/>
                             <constraint firstItem="Rm7-YL-cbd" firstAttribute="top" secondItem="7HQ-Tr-5kk" secondAttribute="bottom" constant="-64" id="EPV-PX-wCp"/>
