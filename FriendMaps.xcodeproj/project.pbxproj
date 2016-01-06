@@ -548,7 +548,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.duyquang.FriendMaps;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "c3a06238-cd37-42e8-8def-20bedc5a2c2f";
+				PROVISIONING_PROFILE = "7d6deefd-296c-4cec-80db-c68a726a9392";
 			};
 			name = Debug;
 		};
@@ -567,7 +567,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.duyquang.FriendMaps;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "c3a06238-cd37-42e8-8def-20bedc5a2c2f";
+				PROVISIONING_PROFILE = "7d6deefd-296c-4cec-80db-c68a726a9392";
 			};
 			name = Release;
 		};
